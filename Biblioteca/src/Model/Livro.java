@@ -2,7 +2,7 @@ package Model;
 
 import java.time.LocalDate;
 
-public class Livro extends NovoRegistro{
+public class Livro extends NovoRegistro {
     private String titulo;
     private String autor;
     private int anoPublicacao;
@@ -81,15 +81,15 @@ public class Livro extends NovoRegistro{
     public void decrementaExemplaresDisponiveis() {
         this.exemplaresDisponiveis--;
     }
-    
+
     public void incrementarExemplaresDisponiveis() {
         this.exemplaresDisponiveis++;
     }
-    
+
     @Override
     public String toString() {
-        return "Livro [Id=" + getId() +  ", titulo=" + titulo + ", autor=" + autor + ", anoPublicacao=" + anoPublicacao
+        return "Livro [Id=" + getId() + ", titulo=" + titulo + ", autor=" + autor + ", anoPublicacao=" + anoPublicacao
                 + ", exemplaresDisponiveis=" + exemplaresDisponiveis + "]";
     }
-    
+
 }

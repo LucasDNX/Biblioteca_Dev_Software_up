@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import Model.Biblioteca;
@@ -23,33 +24,42 @@ public class App {
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
 
-            opcao = in.nextInt();
-
-            switch (opcao) {
-                case 0:
-                    System.out.println("Saindo do programa...");
-                    break;
-                case 1:
-                    view.CadastroLivro.main(args, in, UpBiblioteca);
-                    break;
-                case 2:
-                    view.PesquisaLivros.main(args, in, UpBiblioteca);
-                    break;
-                case 3:
-                    view.CadastroUsuario.main(args, in, UpBiblioteca);
-                    break;
-                case 4:
-                    view.EmprestrimoLivro.main(args, in, UpBiblioteca);
-                    break;
-                case 5:
-                    view.DevolucaoLivro.main(args, in, UpBiblioteca);
-                    break;
-                case 6:
-                    view.GerarRelatorio.main(args, UpBiblioteca);
-                    break;
-                default:
-                    System.out.println("Opção inválida. Por favor, escolha novamente.");
+            try {
+                opcao = in.nextInt();
+                switch (opcao) {
+                    case 0:
+                        System.out.println("Saindo do programa...");
+                        break;
+                    case 1:
+                        view.CadastroLivro.main(args, in, UpBiblioteca);
+                        break;
+                    case 2:
+                        view.PesquisaLivros.main(args, in, UpBiblioteca);
+                        break;
+                    case 3:
+                        view.CadastroUsuario.main(args, in, UpBiblioteca);
+                        break;
+                    case 4:
+                        view.EmprestimoLivro.main(args, in, UpBiblioteca);
+                        break;
+                    case 5:
+                        view.DevolucaoLivro.main(args, in, UpBiblioteca);
+                        break;
+                    case 6:
+                        view.GerarRelatorio.main(args, UpBiblioteca);
+                        break;
+                    default:
+                        System.out.println("Opção inválida. Por favor, escolha novamente.");
+                }
             }
+
+            catch (InputMismatchException e) {
+                // Exceção para impedir a inserção de outros tipos de caracteres
+                System.out.println("Entrada inválida. Por favor, insira um número inteiro.");
+                in.nextLine();
+                opcao = -1; // Reinicia a opcao
+            }
+
         } while (opcao != 0);
 
         in.close();

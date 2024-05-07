@@ -6,13 +6,12 @@ import java.util.List;
 
 import util.Util;
 
-public class Biblioteca {
+public class Biblioteca implements OperacoesBiblioteca {
 
     // ATRIBUTOS
     private List<Livro> livros;
     private List<Usuario> usuarios;
     private List<Emprestimo> emprestimos;
-
 
     // CONSTRUTOR
     public Biblioteca() {
@@ -20,7 +19,6 @@ public class Biblioteca {
         this.usuarios = new ArrayList<>();
         this.emprestimos = new ArrayList<>();
     }
-
 
     // GETTERS E SETTERS
     public List<Livro> getLivros() {
@@ -47,11 +45,13 @@ public class Biblioteca {
         this.emprestimos = emprestimos;
     }
 
-    //MÉTODOS
+    // MÉTODOS
+    @Override
     public void adicionarLivro(Livro livro) {
         livros.add(livro);
     }
 
+    @Override
     public void adicionarUsuario(Usuario usuario) {
         usuarios.add(usuario);
     }
@@ -67,12 +67,12 @@ public class Biblioteca {
                     }
                     break;
                 case 2:
-                    if (livro.getTitulo().equalsIgnoreCase(pesquisaLivro)) {
+                    if (livro.getTitulo().toUpperCase().equalsIgnoreCase(pesquisaLivro.toUpperCase())) {
                         livrosEncontrados.add(livro);
                     }
                     break;
                 case 3:
-                    if (livro.getAutor().equalsIgnoreCase(pesquisaLivro)) {
+                    if (livro.getAutor().toUpperCase().equalsIgnoreCase(pesquisaLivro.toUpperCase())) {
                         livrosEncontrados.add(livro);
                     }
                     break;
@@ -91,15 +91,17 @@ public class Biblioteca {
         return livrosEncontrados;
     }
 
+    @Override
     public Emprestimo emprestaLivro(Livro livro, Usuario usuario) {
         if (!livro.isEmprestado() && livro.getExemplaresDisponiveis() > 0) {
             LocalDate dataEmprestimo = LocalDate.now();
             LocalDate dataDevolucaoPrevista = dataEmprestimo.plusDays(7);
 
-            Emprestimo emprestimo = new Emprestimo(Util.gerarIdEmprestimo(), livro, usuario, dataEmprestimo, dataDevolucaoPrevista);
+            Emprestimo emprestimo = new Emprestimo(Util.gerarIdEmprestimo(), livro, usuario, dataEmprestimo,
+                    dataDevolucaoPrevista);
             emprestimos.add(emprestimo);
 
-            //setar 
+            // setar
             livro.setEmprestado(true);
             livro.setDataEmprestimo(dataEmprestimo);
             livro.setDataDevolucaoPrevista(dataDevolucaoPrevista);
@@ -134,12 +136,13 @@ public class Biblioteca {
     public Usuario buscarUsuarioPorNome(String nome) {
         for (Usuario usuario : usuarios) {
             if (usuario.getNome().equals(nome)) {
-                return usuario; 
+                return usuario;
             }
         }
-        return null; 
+        return null;
     }
 
+    @Override
     public void devolveLivro(int idEmprestimo) {
 
         // Busca o empréstimo pelo ID
@@ -148,12 +151,12 @@ public class Biblioteca {
 
                 // Atualiza a data de devolução real para a data atual
                 emprestimo.setDataDevolucaoReal(LocalDate.now());
-                return; 
-                
+                return;
+
             }
         }
     }
-    
+
     public Emprestimo buscaEmprestimoPorId(int id) {
         for (Emprestimo emprestimo : emprestimos) {
             if (emprestimo.getId() == id) {
@@ -163,10 +166,9 @@ public class Biblioteca {
         return null; // Retorna null se nenhum empréstimo for encontrado com o ID fornecido
     }
 
-
     @Override
     public String toString() {
         return "Biblioteca [livros=" + livros + ", usuarios=" + usuarios + ", emprestimos=" + emprestimos + "]";
     }
-    
+
 }

@@ -7,20 +7,20 @@ public abstract class Util {
     private static int proximoIdRelatorio = 1;
     private static int proximoIdEmprestimo = 1;
 
-    public static int gerarIdUsuario(){
+    public static int gerarIdUsuario() {
         return proximoIdUsuario++;
     }
 
-    public static int gerarIdLivro(){
+    public static int gerarIdLivro() {
         return proximoIdLivro++;
     }
 
-    public static int gerarIdRelatorio(){
+    public static int gerarIdRelatorio() {
         return proximoIdRelatorio++;
     }
 
-    public static int gerarIdEmprestimo(){
+    public static int gerarIdEmprestimo() {
         return proximoIdEmprestimo++;
     }
-    
+
 }

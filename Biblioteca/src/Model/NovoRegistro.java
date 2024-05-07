@@ -6,8 +6,7 @@ public class NovoRegistro {
     private int id;
     private LocalDate dataCadastro;
 
-    public NovoRegistro(int id)
-    {
+    public NovoRegistro(int id) {
         this.id = id;
         this.dataCadastro = LocalDate.now();
     }
@@ -33,5 +32,4 @@ public class NovoRegistro {
         return "NovoRegistro [id=" + id + ", dataCadastro=" + dataCadastro + "]";
     }
 
-    
 }

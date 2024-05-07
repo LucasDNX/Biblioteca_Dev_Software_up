@@ -2,7 +2,7 @@ package Model;
 
 import java.time.LocalDate;
 
-public class Emprestimo extends NovoRegistro{
+public class Emprestimo extends NovoRegistro {
     private Livro livro;
     private Usuario usuario;
     private LocalDate dataEmprestimo;

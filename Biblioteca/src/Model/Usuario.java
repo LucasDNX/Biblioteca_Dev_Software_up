@@ -3,7 +3,7 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Usuario extends NovoRegistro{
+public class Usuario extends NovoRegistro {
     private String nome;
     private String telefone;
     private String endereco;
@@ -68,6 +68,5 @@ public class Usuario extends NovoRegistro{
         return "Usuario [nome=" + nome + ", telefone=" + telefone + ", endereco=" + endereco + ", email=" + email
                 + ", livrosEmprestados=" + livrosEmprestados + "]";
     }
-    
-    
+
 }
